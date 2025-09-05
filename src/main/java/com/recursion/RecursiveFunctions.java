@@ -63,23 +63,54 @@ public class RecursiveFunctions {
     }
 
     public static int recursiveSum(List<Integer> list) {
-        return -1;
+        if (list.isEmpty()){
+            return 0;
+        }
+        else {
+            return (list.getFirst() + recursiveSum(list.subList(1, list.size())));
+        }
     }
 
     public static int recursiveFactorial(int n) {
-        return -1;
+        if (n<=1){
+            return 1;
+        }
+        else {
+            return n*recursiveFactorial(n-1);
+        }
     }
 
     public static int recursivePow(int base, int exponent) {
-        return -1;
+        if (exponent <= 1){
+            return base;
+        }
+        else {
+            return base*recursivePow(base, exponent-1);
+        }
     }
 
     public static int recursiveFibonacci(int n) {
-        return -1;
+        if (n == 1) {
+            return 1;
+        }
+        else if (n<1){
+            return 0;
+        }
+        else {
+            return recursiveFibonacci(n-2)+recursiveFibonacci(n-1);
+        }
     }
 
     public static boolean recursivePalindrome(String word) {
-        return false;
+        if (word.length() <= 1) {
+            return(true);
+        }
+        else if (word.charAt(0) == word.charAt(word.length()-1)) {
+            return recursivePalindrome(word.substring(1, word.length()-1));
+        }
+        else  {
+            return false;
+        }
     }
 
 
