@@ -1,27 +1,65 @@
 package com.recursion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecursiveFunctions {
 
     public static int recursiveIndexOf(List<String> list, String target) {
-        return -1;
+        if(!list.isEmpty()){
+            if(target.equals(list.getFirst())){
+                return 0;
+            }
+            else {
+                if (recursiveIndexOf(list.subList(1, list.size()), target) == -1){
+                    return -1;
+                }
+                else {
+                return (recursiveIndexOf(list.subList(1, list.size()), target) + 1);
+                }
+            }
+        }
+        else {
+            return -1;
+        }
     }
 
     public static int recursiveIndexOfByIndex(List<String> list, String target, int index) {
-        return -1;
+        List<String> shortlist = list.subList(index,list.size());
+        if (recursiveIndexOf(shortlist, target) == -1){
+            return -1;
+        }
+        else {
+            return (recursiveIndexOf(shortlist, target) + index);
+        }
     }
 
     public static int recursiveIndexOfEmpty(List<String> list) {
-        return -1;
+        return (recursiveIndexOf(list, ""));
     }
 
     public static int recursivePut(String target, List<String> list) {
-        return -1;
+        if (recursiveIndexOfEmpty(list) != -1){
+            list.set(recursiveIndexOfEmpty(list), target);
+            return recursiveIndexOf(list, target);
+        }
+        else {
+            return -1;
+        }
     }
 
     public static int recursiveRemove(List<String> list, String target) {
-        return -1;
+        if ((recursiveIndexOf(list, target) == -1) || (list.isEmpty())) {
+            return 0;
+        }
+        else {
+            if(list.getFirst().equals(target)){
+                return(recursiveRemove(list.subList(1, list.size()), target)+1);
+            }
+            else {
+                return(recursiveRemove(list.subList(1, list.size()), target));
+            }
+        }
     }
 
     public static int recursiveSum(List<Integer> list) {
